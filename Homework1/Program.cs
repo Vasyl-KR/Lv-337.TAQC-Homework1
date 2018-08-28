@@ -10,29 +10,24 @@ namespace Homework1
     {
         static void Main(string[] args)
         {
-            int a, b;
-            Console.WriteLine("Enter two integer numbers");
+            int a;
+            Console.WriteLine("Enter a integer number a");
             Int32.TryParse(Console.ReadLine(), out a);
-            Int32.TryParse(Console.ReadLine(), out b);
-            Console.WriteLine("a+b = {0}\na-b = {1}\na*b = {2}\na/b = {3}", a + b, a - b, a * b, a / b);
+            Console.WriteLine("Perimeter = {0}\t Area = {1}", 4 * a, a * a);
 
-            string answer;
-            Console.WriteLine("How are you?");
-            answer = Console.ReadLine();
-            Console.WriteLine("You are {0}", answer);
+            int age;
+            string name;
+            Console.WriteLine("What is your name?");
+            name = Console.ReadLine();
+            Console.WriteLine("How old are you, {0}?", name);
+            Int32.TryParse(Console.ReadLine(), out age);
+            Console.WriteLine("Name - {0}, Age - {1}", name, age);
 
-            char c1, c2, c3;
-            Console.WriteLine("Enter tree chars");
-            char.TryParse(Console.ReadLine(), out c1);
-            char.TryParse(Console.ReadLine(), out c2);
-            char.TryParse(Console.ReadLine(), out c3);
-            Console.WriteLine("You enter {0}, {1}, {2}", c1, c2, c3);
+            double r;
+            Console.WriteLine("Enter double number r");
+            Double.TryParse(Console.ReadLine(), out r);
+            Console.WriteLine("Length - {0:F3}, Area - {1:F3}, Volume - {2:F3}", 2 * Math.PI * r, Math.PI * r * r, 4 / 3 * Math.PI * r * r * r);
 
-            Console.WriteLine("Enter two integer numbers");
-            Int32.TryParse(Console.ReadLine(), out a);
-            Int32.TryParse(Console.ReadLine(), out b);
-            Console.WriteLine(a > 0 && b > 0 ? "Positive" : "Negative");
-            
             Console.ReadKey();
 
         }
