@@ -11,7 +11,7 @@ namespace Homework1
         static void Main(string[] args)
         {
             int a, b;
-            c
+            Console.WriteLine("Enter two integer numbers");
             Int32.TryParse(Console.ReadLine(), out a);
             Int32.TryParse(Console.ReadLine(), out b);
             Console.WriteLine("a+b = {0}\na-b = {1}\na*b = {2}\na/b = {3}", a + b, a - b, a * b, a / b);
@@ -28,6 +28,11 @@ namespace Homework1
             char.TryParse(Console.ReadLine(), out c3);
             Console.WriteLine("You enter {0}, {1}, {2}", c1, c2, c3);
 
+            Console.WriteLine("Enter two integer numbers");
+            Int32.TryParse(Console.ReadLine(), out a);
+            Int32.TryParse(Console.ReadLine(), out b);
+            Console.WriteLine(a > 0 && b > 0 ? "Positive" : "Negative");
+            
             Console.ReadKey();
 
         }
