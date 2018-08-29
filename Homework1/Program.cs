@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Homework2
+namespace Homework3
 {
     class Program
     {
@@ -12,101 +12,88 @@ namespace Homework2
         static void Main(string[] args)
         {
             //task 1
-            int a, b;
-            Console.WriteLine("Enter 2 integer numbers");
-            Int32.TryParse(Console.ReadLine(), out a);
-            Int32.TryParse(Console.ReadLine(), out b);
-            int count = 0;
-            for (int i = a; i <= b; i++)
+            int count_a = 0, count_o = 0, count_i = 0, count_e = 0;
+            Console.WriteLine("Enter the text");
+            string text = Console.ReadLine();
+            foreach (char ch in text)
             {
-                if (i % 3 == 0)
+                switch (ch)
                 {
-                    count++;
+                    case 'a':
+                        count_a++;
+                        break;
+                    case 'o':
+                        count_o++;
+                        break;
+                    case 'i':
+                        count_i++;
+                        break;
+                    case 'e':
+                        count_e++;
+                        break;
                 }
             }
-            Console.WriteLine(count);
+            Console.WriteLine("a-{0} o-{1} i-{2} e-{3}", count_a, count_o, count_i, count_e);
             //task 2
-            Console.WriteLine("Enter string line");
-            string line = Console.ReadLine();
-            int count2 = 0;
-            foreach (char c in line)
+            Console.WriteLine("Enter the number of month");
+            int month;
+            Int32.TryParse(Console.ReadLine(), out month);
+            switch (month)
             {
-                if (count2 % 2 == 0)
-                {
-                    Console.Write(c);
-                }
-                count2++;
-            }
-            Console.WriteLine();
-            //task 3
-            Console.WriteLine("Enter name of drink");
-            string drink = Console.ReadLine();
-            switch (drink)
-            {
-                case "coffee":
-                    Console.WriteLine(drink + " 3$");
+                case 1:
+                case 3:
+                case 5:
+                case 7:
+                case 8:
+                case 10:
+                case 12:
+                    Console.WriteLine("The amount of days in this month - 31");
                     break;
-                case "tea":
-                    Console.WriteLine(drink + " 2$");
+                case 2:
+                    Console.WriteLine("The amount of days in this month - 28");
                     break;
-                case "juice":
-                    Console.WriteLine(drink + " 1.5$");
-                    break;
-                case "water":
-                    Console.WriteLine(drink + " 1$");
+                case 4:
+                case 6:
+                case 9:
+                case 11:
+                    Console.WriteLine("The amount of days in this month - 30");
                     break;
                 default:
-                    Console.WriteLine("It's not a drink");
+                    Console.WriteLine("Not a month");
                     break;
             }
-            //task 4
-            double sum = 0;
-            int number = 0, count3 = -1;
-            Console.WriteLine("Enter numbers");
-            do
-            {
-                sum += number;
-                count3++;
-                Int32.TryParse(Console.ReadLine(), out number);
-            }
-            while (number >= 0);
-            Console.WriteLine("Arithmetic mean {0}", sum / count3);
-            //task 5
-            Console.WriteLine("Enter year");
-            int year;
-            Int32.TryParse(Console.ReadLine(), out year);
-            if ((year % 4 == 0 && year % 100 != 0) || year % 400 == 0)
-                Console.WriteLine("{0} is leap year", year);
-            else
-                Console.WriteLine("{0} is not leap year", year);
-            //task 6
-            int sum2 = 0;
-            Console.WriteLine("Enter number");
-            string sNumber = Console.ReadLine();
-            foreach (char ch in sNumber)
-            {
-                sum2 += Convert.ToInt32(ch) - 48;
-            }
-            Console.WriteLine(sum2);
-            //task 7
-            Console.WriteLine("Enter number");
+            //task3
+            int[] Numbers = new int[10];
             bool check = true;
-            string sNumber2 = Console.ReadLine();
-            foreach (char ch in sNumber2)
+            int result = 0;
+            Console.WriteLine("Enter 10 integer numbers");
+            for (int i = 0; i < 10; i++)
             {
-                if ((Convert.ToInt32(ch) - 48) % 2 == 0)
+                Int32.TryParse(Console.ReadLine(), out Numbers[i]);
+            }
+            for (int i = 0; i < 5; i++)
+            {
+                if (Numbers[i] < 0)
                 {
                     check = false;
-                    break;
                 }
             }
             if (check)
             {
-                Console.WriteLine("Odd digits");
+                for (int i = 0; i < 5; i++)
+                {
+                    result += Numbers[i];
+                }
+                Console.WriteLine("The sum of first 5 elements = {0}", result);
             }
             else
             {
-                Console.WriteLine("Even digit");
+                result = 1;
+                for (int i = 5; i < 10; i++)
+                {
+                    result *= Numbers[i];
+                }
+                Console.WriteLine("The product of last 5 element = {0}", result);
             }
 
             Console.ReadKey();
