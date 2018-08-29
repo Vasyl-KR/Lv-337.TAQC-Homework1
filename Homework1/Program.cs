@@ -26,9 +26,9 @@ namespace Homework2
             white.red = 255;
             white.green = 255;
             white.blue = 255;
-            black.red = 255;
-            black.green = 255;
-            black.blue = 255;
+            black.red = 0;
+            black.green = 0;
+            black.blue = 0;
 
             Console.ReadKey();
 
