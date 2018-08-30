@@ -6,67 +6,58 @@ using System.Threading.Tasks;
 
 namespace Homework4
 {
-    class Car
+    public class Person
     {
         private string name;
-        private string color;
-        private double price;
-        private const string companyName = "Volkswagen";
+        private DateTime birthYear;
 
-        public Car()
+        public Person()
         {
-
         }
-        public Car(string n, string c, double p)
+        public Person(string n, DateTime d)
         {
             name = n;
-            color = c;
-            price = p;
+            birthYear = d;
         }
-        public string Color
+        public string Name
         {
-            get { return color; }
-            set { color = value; }
+            get { return name; }
         }
-
-        public void Input()
+        public DateTime Year
         {
-            Console.WriteLine("Enter name car:");
-            name = Console.ReadLine();
-            Console.WriteLine("Enter color car:");
-            color = Console.ReadLine();
-            Console.WriteLine("Enter cost car:");
-            Double.TryParse(Console.ReadLine(), out price);
-        }
-        public void Print()
-        {
-            Console.WriteLine("Car name - " + name + ", color - " + color + ", price - {0}", price);
-        }
-        public void ChangePrice(double x)
-        {
-            price += price * (x / 100);
-        }
-        public void ToWhite(string color)
-        {
-            if (this.color == "white")
-            {
-                this.color = color;
-            }
-        }
-        public static bool operator ==(Car first, Car second)
-        {
-            return (first.name == second.name) && (first.price == second.price);
-        }
-        public static bool operator !=(Car first, Car second)
-        {
-            return !(first == second);
-
+            get { return birthYear; }
         }
         public override string ToString()
         {
-            return (string.Format("Car name - " + name + ", color - " + color + ", price - {0}", price));
+            return "Person name - " + name + ", Year - " + birthYear.Year;
         }
-
+        public void Output()
+        {
+            Console.WriteLine(ToString());
+        }
+        public int Age()
+        {
+            return (DateTime.Today).Year - birthYear.Year;
+        }
+        public void Input()
+        {
+            Console.WriteLine("Enter name of person:");
+            name = Console.ReadLine();
+            Console.WriteLine("Enter year of birth");
+            birthYear = new DateTime(Int32.Parse(Console.ReadLine()), 1, 1);
+        }
+        public void ChangeName(string name)
+        {
+            this.name = name;
+        }
+        public static bool operator ==(Person first, Person second)
+        {
+            return first.name == second.name;
+        }
+        public static bool operator !=(Person first, Person second)
+        {
+            return !(first == second);
+        }
     }
 
     class Program
@@ -74,23 +65,41 @@ namespace Homework4
 
         static void Main(string[] args)
         {
-            Car car1 = new Car("Audi", "white", 34000);
-            Car car2 = new Car("Volvo", "black", 43000);
-            Car car3 = new Car("Audi", "green", 34000);
-            car2.ChangePrice(-10);
-            car2.Print();
-            Console.WriteLine("Enter new color");
-            car1.ToWhite(Console.ReadLine());
-            car1.Print();
-            if (car1 == car3)
+            Person[] Peoples = new Person[6];
+            for (int i = 0; i < 6; i++)
             {
-                Console.WriteLine("The same cars");
+                Person person = new Person();
+                person.Input();
+                Peoples[i] = person;
             }
-            else
+            Console.WriteLine();
+            foreach (Person person in Peoples)
             {
-                Console.WriteLine("Not the same cars");
+                Console.WriteLine("Name - {0}, Age - {1}", person.Name, person.Age());
             }
-            Console.WriteLine(car3.ToString());
+            foreach (Person person in Peoples)
+            {
+                if (person.Age() < 16)
+                {
+                    person.ChangeName("Very Young");
+                }
+            }
+            Console.WriteLine();
+            foreach (Person person in Peoples)
+            {
+                person.Output();
+            }
+            Console.WriteLine("");
+            for (int i = 0; i < 6; i++)
+            {
+                for (int j = i + 1; j < 6; j++)
+                {
+                    if (Peoples[i] == Peoples[j])
+                    {
+                        Console.WriteLine("Person {0} and Person {1} has the same name", i + 1, j + 1);
+                    }
+                }
+            }
 
             Console.ReadKey();
         }
