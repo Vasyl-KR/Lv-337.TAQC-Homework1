@@ -4,6 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+/*Create Console Application project in VS.
+   In method Main() write code for solving next task:
+        a) read 3 float numbers and check: are they all belong to the range [-5,5].
+        b) read 3 integers and write max and min of them.
+        c) read number of HTTP Error (400, 401,402, ...) and write the name of this error (Declare enum HTTPError)
+        d) declare struct Dog with fields Name, Mark, Age. Declare variable myDog of Dog type and read values for it. 
+        Output myDos into console. (Declare method ToString in struct)
+*/
 namespace Homework2
 {
     enum HTTPError { BadRequest = 400, Unauthorized, PaymentRequired, Forbidden, NotFound, MethodNotAllowed }
