@@ -4,6 +4,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+/*Create Console Application project in VS.
+In method Main() write code for solving next tasks:
+
+1) Define integer variables a and b.Read values a and b from Console and calculate: a+b, a-b, a*b, a/b. Output obtained results.
+
+2) Output question “How are you?“. Define string variable answer. Read the value answer and output: “You are (answer)". 
+
+3) Read 3 variables of char type. Write message: “You enter (first char), (second char), (3 char)”
+
+4) Enter 2 integer numbers. Check if they are both positive – use bool expretion*/
+
 namespace Homework1
 {
     class Program
