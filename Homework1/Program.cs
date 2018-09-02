@@ -32,6 +32,7 @@ namespace Homework2
         
         static void Main(string[] args)
         {
+            //task1
             float a, b, c;
             Console.WriteLine("Enter 3 float numbers");
             float.TryParse(Console.ReadLine(), out a);
@@ -39,7 +40,7 @@ namespace Homework2
             float.TryParse(Console.ReadLine(), out c);
             Console.WriteLine("Are they all belong to the range [-5,5]? \n{0}", (a >= -5 &&
                 a <= 5) ? (b >= -5 && b <= 5) ? (c >= -5 && c <= 5) ? "true" : "false" : "false" : "false");
-
+            //task2
             int m, n, v;
             Console.WriteLine("Enter 3 integer numbers");
             Int32.TryParse(Console.ReadLine(), out m);
@@ -47,10 +48,10 @@ namespace Homework2
             Int32.TryParse(Console.ReadLine(), out v);
             Console.WriteLine("Max {0}", (m > n) ? (m > v) ? m : v : (n > v) ? n : v);
             Console.WriteLine("Min {0}", (m < n) ? (m < v) ? m : v : (n < v) ? n : v);
-
+            //task3
             Console.WriteLine("Enter number of HTTP error");
             Console.WriteLine(((HTTPError)Int32.Parse(Console.ReadLine())).ToString());
-
+            //task4
             Dog myDog;
             Console.WriteLine("Enter name, mark and age of your dog");
             myDog.name = Console.ReadLine();
