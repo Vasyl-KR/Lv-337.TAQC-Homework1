@@ -4,6 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+/*Визначити перелічення TestCaseStatus (Pass, Fail, Blocked, WP, Unexecuted). 
+  Змінній test1Status присвоїти значення Pass і вивести значення змінної на консоль.
+
+  Визначити структуру RGB, яка представляє колір з полями red, green, blue типу byte . Визначити дві змінні цього типу і ввести їх поля для білого та 
+  чорного кольорів.
+*/
+
 namespace Homework2
 {
     enum TestCaseStatus { Pass, Fail, Blocked, WP, Unexecuted };
