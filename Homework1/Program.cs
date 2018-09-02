@@ -19,11 +19,12 @@ namespace Homework1
     {
         static void Main(string[] args)
         {
-            int a;
+            //task1
+            int a; 
             Console.WriteLine("Enter a integer number a");
             Int32.TryParse(Console.ReadLine(), out a);
             Console.WriteLine("Perimeter = {0}\t Area = {1}", 4 * a, a * a);
-
+            //task2
             int age;
             string name;
             Console.WriteLine("What is your name?");
@@ -31,7 +32,7 @@ namespace Homework1
             Console.WriteLine("How old are you, {0}?", name);
             Int32.TryParse(Console.ReadLine(), out age);
             Console.WriteLine("Name - {0}, Age - {1}", name, age);
-
+            //task3
             double r;
             Console.WriteLine("Enter double number r");
             Double.TryParse(Console.ReadLine(), out r);
