@@ -4,6 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+/*Create Console Application project in VS.
+In method Main() write code for solving next tasks:
+	b) define integer variable a. Read the value of a from console and calculate area 
+    and perimetr of square with length a. Output obtained results.
+	c) define string variable name and integer value age. Output question "What is your name?";
+    Read the value name and output next question: "How old are you,(name)?". Read age and write whole information  
+    d) Read double number r and calculate the length (l=2*pi*r), area (S=pi*r*r) 
+    and volume (4/3*pi*r*r*r) of a circle of given r */
+
 namespace Homework1
 {
     class Program
