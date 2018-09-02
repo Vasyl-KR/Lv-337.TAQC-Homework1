@@ -26,9 +26,10 @@ namespace Homework2
         
         static void Main(string[] args)
         {
+            //task1
             TestCaseStatus test1Status = TestCaseStatus.Pass;
             Console.WriteLine(test1Status);
-            
+            //task2
             RGB white, black;
             white.red = 255;
             white.green = 255;
