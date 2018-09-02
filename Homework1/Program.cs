@@ -19,7 +19,7 @@ namespace Homework2
         
         static void Main(string[] args)
         {
-
+            //task1
             int day, month;
             Console.WriteLine("Enter a day");
             Int32.TryParse(Console.ReadLine(), out day);
@@ -27,7 +27,7 @@ namespace Homework2
             Int32.TryParse(Console.ReadLine(), out month);
             bool check = day > 0 && day <= 31 && month > 0 && month <= 12;
             Console.WriteLine(check);
-
+            //task2
             double number;
             Console.WriteLine("Enter a double number");
             Double.TryParse(Console.ReadLine(), out number);
@@ -36,7 +36,7 @@ namespace Homework2
             number *= 10;
             double b = (int)number % 100 % 10;
             Console.WriteLine("First digit {0}, second digit {1}, sum {2}", a, b, a + b);
-
+            //task3
             int h;
             Console.WriteLine("Enter a hour");
             Int32.TryParse(Console.ReadLine(), out h);
