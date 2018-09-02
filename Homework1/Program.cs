@@ -4,6 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+/*Input two integer numbers a  and b and check whether they have the same parity (true or false)
+ 
+  Input the real number r and calculate the circle circumference, circle area and the sphere volume of this radius
+
+  Input two integer numbers h and m, representing the time (hour and minute). 
+  Depending on the time, output the greeting (“Good morning!”, “Good afternoon!”, “Good evening!”, “Good night!”)
+*/
 namespace Homework2
 {
     class Program
