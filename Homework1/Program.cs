@@ -4,12 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-/*Input two integer numbers a  and b and check whether they have the same parity (true or false)
+/*Ввести два цілих числа day та month і перевірити чи можуть вони представляти день та місяць. Вивести true чи false
  
-  Input the real number r and calculate the circle circumference, circle area and the sphere volume of this radius
+  Ввести дійсне число  number і отримати 2 перші цифри після коми цього числа. Вивести суму цих цифр. Напр.: 3.456->4+5=9
 
-  Input two integer numbers h and m, representing the time (hour and minute). 
-  Depending on the time, output the greeting (“Good morning!”, “Good afternoon!”, “Good evening!”, “Good night!”)
+  Ввести ціле число h , які представляють час доби (година ). 
+  Залежності від часу доби вивести привітання («Доброго ранку!», «Доброго дня!», «Доброго вечора!», «Доброї ночі!»)
+
 */
 namespace Homework2
 {
