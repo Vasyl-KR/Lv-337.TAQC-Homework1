@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace Homework5
 {
-    interface IFlyable
+    interface IDeveloper
     {
-        void Fly();
+        string Tool { get; set; }
+        void Create();
+        void Destroy();
     }
 }
