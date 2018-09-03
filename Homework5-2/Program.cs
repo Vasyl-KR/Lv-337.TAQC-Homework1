@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,22 +17,22 @@ namespace Homework5
 {
     class Program
     {
-        
+
         static void Main(string[] args)
         {
-           //List
-           List<int> myColl = new List<int>(10);
+            //ArrayList
+            ArrayList myColl = new ArrayList();
             int count = 0;
-           Console.WriteLine("Enter 10 integer numbers");
-           for (int i = 0; i < myColl.Capacity; i++)
-           {
+            Console.WriteLine("Enter 10 integer numbers");
+            for (int i = 0; i < myColl.Capacity; i++)
+            {
                 myColl.Add(Int32.Parse(Console.ReadLine()));
-           }
+            }
 
-            foreach (int item in myColl)
+            foreach (var item in myColl)
             {
                 count++;
-                if (item == -10)
+                if ((int)item == -10)
                 {
                     Console.WriteLine("-10 in position {0}", count);
                 }
@@ -40,7 +41,7 @@ namespace Homework5
             Console.WriteLine("Remove");
             for (int i = 0; i < capacity; i++)
             {
-                if (myColl[i] > 20)
+                if ((int)myColl[i] > 10)
                 {
                     myColl.RemoveAt(i);
                     i--;
