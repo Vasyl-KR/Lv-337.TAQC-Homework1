@@ -4,16 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-/*  1)Ввести a  та b – два цілих числа. Порахувати скільки цілих чисел з діапазону [a..b] діляться на 3 без остачі.
-    2)Ввести рядок символів. Видрукувати кожен другий символ.
-    3)Ввести назву напитку (кава, чай, сік, вода). Вивести назву напитку і його ціну.
-    4) Введіть послідовність додатних цілих чисел (до першого від’ємного). 
-    Обчисліть середнє арифметичне значення введених чисел.
-    5) Перевірити чи введений рік є високосним.
-    6) Знайти суму цифр введеного цілого числа
-    7) Перевірити чи введене натуральне число містить лише непарні цифри*/
+/*  Утворити і заповнити колекцію з 10 цілих чисел
+    Отримати і вивести на консоль тільки від’ємні числа
+    Отримати і вивести на консоль тільки додатні парні числа
+    Отримати найбільший та найменший елементи з масиву, а також суму всіх елементів.
+    Отримати перший елемент з масиву, який є менший ніж середнє арифметичне значення елементів масиву
+    Посортувати масив з використанням OrderBy*/
 
-namespace Homework3
+
+namespace Homework8
 {
     class Program
     {
@@ -21,101 +20,63 @@ namespace Homework3
         static void Main(string[] args)
         {
             //task 1
-            int a, b;
-            Console.WriteLine("Enter 2 integer numbers");
-            Int32.TryParse(Console.ReadLine(), out a);
-            Int32.TryParse(Console.ReadLine(), out b);
-            int count = 0;
-            for (int i = a; i <= b; i++)
+            List<int> numbers = new List<int>();
+            Random rand = new Random();
+            for (int i = 0; i < 10; i++)
             {
-                if (i % 3 == 0)
-                {
-                    count++;
-                }
+                numbers.Add(rand.Next(-100, 100));
             }
-            Console.WriteLine(count);
-            //task 2
-            Console.WriteLine("Enter string line");
-            string line = Console.ReadLine();
-            int count2 = 0;
-            foreach (char c in line)
+            foreach (int i in numbers)
             {
-                if (count2 % 2 == 0)
-                {
-                    Console.Write(c);
-                }
-                count2++;
+                Console.Write(i + " ");
             }
             Console.WriteLine();
+
+            //task 2
+            var negative = from i in numbers
+                           where i < 0
+                           select i;
+
+            Console.WriteLine("Negative");
+            foreach (var i in negative)
+            {
+                Console.Write(i + " ");
+            }
+            Console.WriteLine();
+
             //task 3
-            Console.WriteLine("Enter name of drink");
-            string drink = Console.ReadLine();
-            switch (drink)
+            var positiveEqual = from i in numbers
+                                 where i > 0 && i % 2 == 0
+                                 select i;
+
+            Console.WriteLine("Positive and Equal");
+            foreach (var i in positiveEqual)
             {
-                case "coffee":
-                    Console.WriteLine(drink + " 3$");
-                    break;
-                case "tea":
-                    Console.WriteLine(drink + " 2$");
-                    break;
-                case "juice":
-                    Console.WriteLine(drink + " 1.5$");
-                    break;
-                case "water":
-                    Console.WriteLine(drink + " 1$");
-                    break;
-                default:
-                    Console.WriteLine("It's not a drink");
-                    break;
+                Console.Write(i + " ");
             }
+            Console.WriteLine();
+
             //task 4
-            double sum = 0;
-            int number = 0, count3 = -1;
-            Console.WriteLine("Enter numbers");
-            do
-            {
-                sum += number;
-                count3++;
-                Int32.TryParse(Console.ReadLine(), out number);
-            }
-            while (number >= 0);
-            Console.WriteLine("Arithmetic mean {0}", sum / count3);
+            var min = (from x in numbers select x).Min();
+            var max = (from x in numbers select x).Max();
+            var sum = (from x in numbers select x).Sum();
+
+            Console.WriteLine("Min {0} Max {1} Sum {2}", min, max, sum);
+           
             //task 5
-            Console.WriteLine("Enter year");
-            int year;
-            Int32.TryParse(Console.ReadLine(), out year);
-            if ((year % 4 == 0 && year % 100 != 0) || year % 400 == 0)
-                Console.WriteLine("{0} is leap year", year);
-            else
-                Console.WriteLine("{0} is not leap year", year);
+            var average = (from x in numbers select x).Average();
+            var first = (from x in numbers where x < average select x).First();
+            Console.WriteLine("Average {0} First {1}", average, first);
+
             //task 6
-            int sum2 = 0;
-            Console.WriteLine("Enter number");
-            string sNumber = Console.ReadLine();
-            foreach (char ch in sNumber)
+            var sort = from x in numbers
+                       orderby x
+                       select x;
+
+            Console.WriteLine("Sorted");
+            foreach (var i in sort)
             {
-                sum2 += Convert.ToInt32(ch) - 48;
-            }
-            Console.WriteLine(sum2);
-            //task 7
-            Console.WriteLine("Enter number");
-            bool check = true;
-            string sNumber2 = Console.ReadLine();
-            foreach (char ch in sNumber2)
-            {
-                if ((Convert.ToInt32(ch) - 48) % 2 == 0)
-                {
-                    check = false;
-                    break;
-                }
-            }
-            if (check)
-            {
-                Console.WriteLine("Odd digits");
-            }
-            else
-            {
-                Console.WriteLine("Even digit");
+                Console.Write(i + " ");
             }
 
             Console.ReadKey();
