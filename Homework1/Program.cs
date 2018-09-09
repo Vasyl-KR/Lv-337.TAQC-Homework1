@@ -4,29 +4,37 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Homework1
+namespace Homework7
 {
     class Program
     {
         static void Main(string[] args)
         {
-            int a;
-            Console.WriteLine("Enter a integer number a");
-            Int32.TryParse(Console.ReadLine(), out a);
-            Console.WriteLine("Perimeter = {0}\t Area = {1}", 4 * a, a * a);
+            List<Person> Peoples = new List<Person>();
+            Peoples.Add(new Person("Oleg"));
+            Peoples.Add(new Staff("Igor", 200));
+            Peoples.Add(new Teacher("Vasyl", 100, "History"));
+            Peoples.Add(new Developer("Ivan", 1000, "Junior"));
 
-            int age;
-            string name;
-            Console.WriteLine("What is your name?");
-            name = Console.ReadLine();
-            Console.WriteLine("How old are you, {0}?", name);
-            Int32.TryParse(Console.ReadLine(), out age);
-            Console.WriteLine("Name - {0}, Age - {1}", name, age);
+            foreach (Person o in Peoples)
+            {
+                o.Print();
+            }
 
-            double r;
-            Console.WriteLine("Enter double number r");
-            Double.TryParse(Console.ReadLine(), out r);
-            Console.WriteLine("Length - {0:F3}, Area - {1:F3}, Volume - {2:F3}", 2 * Math.PI * r, Math.PI * r * r, 4 / 3 * Math.PI * r * r * r);
+            Console.WriteLine("Enter name of person");
+            string name = Console.ReadLine();
+            bool check = false;
+            foreach (Person o in Peoples)
+            {
+                if (o.Name == name)
+                {
+                    o.Print();
+                    check = true;
+                    break;
+                }
+            }
+            if (check == false)
+                Console.WriteLine("Such person not found");
 
             Console.ReadKey();
 
