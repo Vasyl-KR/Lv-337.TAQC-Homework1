@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 
 /*  Create method Div(), which calculates the dividing of two  double numbers. 
     In Main input  2 double numbers and call this method. Catch appropriative exceptions. 
@@ -27,24 +28,41 @@ namespace Homework6
         {
             //task1
             double a, b;
-            try
-            {
-                Console.WriteLine("Enter two numbers");
-                a = Double.Parse(Console.ReadLine());
-                b = Double.Parse(Console.ReadLine());
-                Console.WriteLine("{0} / {1} = {2}", a, b, DoubleResult(a, b));
-            }
-            catch (FormatException)
-            {
-                Console.WriteLine("Invalid double number");
-            }
-            catch (DivideByZeroException)
-            {
-                Console.WriteLine("Dividing by zero is not allowed");
-            }
+            //try
+            //{
+            //    Console.WriteLine("Enter two numbers");
+            //    a = Double.Parse(Console.ReadLine());
+            //    b = Double.Parse(Console.ReadLine());
+            //    Console.WriteLine("{0} / {1} = {2}", a, b, DoubleResult(a, b));
+            //}
+            //catch (FormatException)
+            //{
+            //    Console.WriteLine("Invalid double number");
+            //}
+            //catch (DivideByZeroException)
+            //{
+            //    Console.WriteLine("Dividing by zero is not allowed");
+            //}
 
             //task2
-
+            try
+            {
+                using (StreamReader reader = new StreamReader("data.txt"))
+                {
+                    a = reader.Read() - 48;
+                    reader.Read();
+                    b = reader.Read() - 48;
+                }
+                using (StreamWriter writer = new StreamWriter("rez.txt"))
+                {
+                    writer.Write(String.Format("{0} / {1} = {2}", a, b, DoubleResult(a, b)));
+                }
+            }
+            catch (FileNotFoundException e)
+            {
+                Console.WriteLine("The file could not be read:");
+                Console.WriteLine(e.Message);
+            }
 
             Console.ReadKey();
         }
