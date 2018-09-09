@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Homework7
+namespace Homework8
 {
     public abstract class Shape : IComparable<Shape>
     {
