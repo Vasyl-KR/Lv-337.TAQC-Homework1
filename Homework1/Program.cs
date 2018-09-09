@@ -10,31 +10,47 @@ namespace Homework7
     {
         static void Main(string[] args)
         {
-            List<Person> Peoples = new List<Person>();
-            Peoples.Add(new Person("Oleg"));
-            Peoples.Add(new Staff("Igor", 200));
-            Peoples.Add(new Teacher("Vasyl", 100, "History"));
-            Peoples.Add(new Developer("Ivan", 1000, "Junior"));
-
-            foreach (Person o in Peoples)
+            List<Shape> figures = new List<Shape>();
+            for (int i = 0; i < 10; i++)
             {
-                o.Print();
-            }
-
-            Console.WriteLine("Enter name of person");
-            string name = Console.ReadLine();
-            bool check = false;
-            foreach (Person o in Peoples)
-            {
-                if (o.Name == name)
+                Console.WriteLine("Enter data, press 1 to add Circle, press 2 to add Square");
+                if (Int32.Parse(Console.ReadLine()) == 1)
                 {
-                    o.Print();
-                    check = true;
-                    break;
+                    Console.WriteLine("Enter name");
+                    string s = Console.ReadLine();
+                    Console.WriteLine("Enter radius");
+                    figures.Add(new Circle(s, double.Parse(Console.ReadLine())));
+                }
+                else
+                {
+                    Console.WriteLine("Enter name");
+                    string s = Console.ReadLine();
+                    Console.WriteLine("Enter side");
+                    figures.Add(new Square(s, double.Parse(Console.ReadLine())));
                 }
             }
-            if (check == false)
-                Console.WriteLine("Such person not found");
+            foreach (Shape o in figures)
+            {
+                Console.WriteLine("Name - {0}, Area - {1:F3}, Perimeter - {2:F3}", o.Name, o.Area(), o.Perimeter());
+            }
+            double max = 0;
+            string name = "";
+            foreach (Shape o in figures)
+            {
+                if (o.Perimeter() > max)
+                {
+                    max = o.Perimeter();
+                    name = o.Name;
+                }
+            }
+            Console.WriteLine("Largest perimeter has - {0}, with value - {1:F3}", name, max);
+
+            Console.WriteLine("\nSorted list");
+            figures.Sort();
+            foreach (Shape o in figures)
+            {
+                Console.WriteLine("Name - {0}, Area - {1:F3}, Perimeter - {2:F3}", o.Name, o.Area(), o.Perimeter());
+            }
 
             Console.ReadKey();
 
