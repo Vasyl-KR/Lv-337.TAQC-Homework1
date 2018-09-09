@@ -11,11 +11,11 @@ namespace UnitTestCalc
         public void AddTest()
         {
             //Arrange
-            Calculator calc = new Calculator();
+            Calculator calc1 = new Calculator();
             int expected = 6;
 
             //Act
-            int result = calc.Add(2, 4);
+            int result = calc1.Add(2, 4);
 
             //Assert
             Assert.AreEqual(expected, result);
