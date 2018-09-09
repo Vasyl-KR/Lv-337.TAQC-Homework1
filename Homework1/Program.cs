@@ -5,17 +5,17 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 
-/*  Create method Div(), which calculates the dividing of two  double numbers. 
-    In Main input  2 double numbers and call this method. Catch appropriative exceptions. 
+/*  In Main() method declare Dictionary PhoneBook for keeping pairs PersonName-PhoneNumber. 
+    1) From file "phones.txt" read 9 pairs into PhoneBook. Write only PhoneNumbers into file "Phones.txt".
+    2) Find and print phone number by the given name (name input from console)
+    3) Change all phone numbers, which are in format 80######### into new format +380#########. 
+    The result write into file "New.txt"
 
-    Read and write all data in task1 from data.txt into rez.txt files, by using (Catch appropriative exceptions):
-        1. StreamReader StreamWriter
-        2. File.WriteAllText
-    Write into file ‘DirectoryC.txt’ information (name, type, size) 
-    about all directories and files from disc C on your computer. Catch appropriative exceptions.
-
-    Select from directory D only .txt files and print the text from it into console. 
-    Catch appropriative exceptions.
+    Write a method ReadNumber(int start, int end), that reads from Console (or from file) integer number 
+    and return it, if it is in the range [start...end]. 
+    If an invalid number or non-number text is read, the method should throw an exception. 
+    Using this method write a method Main(), that has to enter 10 numbers:
+		a1, a2, ..., a10, such that 1 < a1 < ... < a10 < 100
 */
 
 
@@ -27,76 +27,99 @@ namespace Homework6
         static void Main()
         {
             //task1
-            double a, b;
+            Dictionary<string, string> phoneBook = new Dictionary<string, string>();
             try
             {
-                Console.WriteLine("Enter two numbers");
-                a = Double.Parse(Console.ReadLine());
-                b = Double.Parse(Console.ReadLine());
-                Console.WriteLine("{0} / {1} = {2}", a, b, DoubleResult(a, b));
-            }
-            catch (FormatException)
-            {
-                Console.WriteLine("Invalid double number");
-            }
-            catch (DivideByZeroException)
-            {
-                Console.WriteLine("Dividing by zero is not allowed");
-            }
-
-            //task2
-            try
-            {
-                using (StreamReader reader = new StreamReader("data.txt"))
+                using (StreamReader sr = new StreamReader(@"C:\Users\Vasyl\Source\Repos\Lv-337.TAQC-Homeworks\Homework1\phones.txt"))
                 {
-                    a = reader.Read() - 48;
-                    reader.Read();
-                    b = reader.Read() - 48;
-                }
-                using (StreamWriter writer = new StreamWriter("rez.txt"))
-                {
-                    writer.Write(String.Format("{0} / {1} = {2}", a, b, DoubleResult(a, b)));
+                    string line;
+                    string[] input;
+                    while ((line = sr.ReadLine()) != null)
+                    {
+                        input = line.Split(' ');
+                        phoneBook.Add(input[1], input[0]);
+                    }
                 }
             }
             catch (FileNotFoundException e)
             {
                 Console.WriteLine("The file could not be read:");
-                Console.WriteLine(e.Message);
             }
-
-            //task3
-            DirectoryInfo info = new DirectoryInfo(@"D:\ArchiCAD\");
-            FileInfo[] file = info.GetFiles();
-            using (StreamWriter writer = new StreamWriter("DirectoryD.txt"))
+            Console.WriteLine("Enter name of person");
+            string s = Console.ReadLine();
+            if (phoneBook.ContainsKey(s))
             {
-                foreach (FileInfo fs in file)
+                Console.WriteLine(phoneBook[s]);
+            }
+            else
+            {
+                Console.WriteLine("Number not found");
+            }
+            using (StreamWriter sw = new StreamWriter("New.txt"))
+            {
+                foreach (KeyValuePair<string, string> kvp in phoneBook)
                 {
-                    writer.Write(String.Format("Name {0}, Size{1}, Type {2}", fs.Name, fs.Length, Path.GetExtension(fs.FullName)));
-                    writer.WriteLine();
+                    string temp = "80";
+                    if (kvp.Value.IndexOf('8') == temp.IndexOf('8') && kvp.Value.IndexOf('0') == temp.IndexOf('0'))
+                    {
+                        sw.Write("{0} {1}", kvp.Key, "+3" + kvp.Value);
+                        sw.WriteLine();
+                    }
                 }
             }
 
-            //task4
-            DirectoryInfo infoD = new DirectoryInfo(@"D:\SS\TAQC\C#\");
-            FileInfo[] fileD = infoD.GetFiles("*.txt");
-
-            foreach (FileInfo dri in fileD)
+            //task2
+            int[] numbers = new int[10];
+            int start = 1;
+            int end = 100;
+            Console.WriteLine("Enter 10 numbers in range from 1 to 100");
+            for (int i = 0; i < 10; i++)
             {
-                using (StreamReader reader = new StreamReader(dri.FullName))
+                int temp = ReadNumber(start, end);
+                if (temp != -1)
                 {
-                    Console.WriteLine(reader.ReadToEnd());
+                    numbers[i] = temp;
+                    start = temp;
                 }
+                else
+                    i--;
+            }
+            Console.WriteLine("\nNumbers");
+            int count = 0;
+            foreach (int i in numbers)
+            {
+                count += 1;
+                Console.WriteLine("№{0} - {1}", count, i);
             }
 
             Console.ReadKey();
         }
-        static public double DoubleResult(double a, double b)
+        static int ReadNumber(int start, int end)
         {
-            if (b == 0)
+            int n;
+            try
             {
-                throw new DivideByZeroException();
+                n = Int32.Parse(Console.ReadLine());
+                if (n >= start && n <= end)
+                {
+                    return n;  
+                }
+                else
+                {
+                    throw new ArgumentOutOfRangeException();
+                }
+
             }
-            return (a / b);
+            catch (FormatException)
+            {
+                Console.WriteLine("Invalid integer number, enter valid number");
+            }
+            catch (ArgumentOutOfRangeException)
+            {
+
+                Console.WriteLine("Out of range, enter valid number");
+            }
+            return -1;
         }
     }
 }
