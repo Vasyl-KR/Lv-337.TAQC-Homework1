@@ -28,23 +28,23 @@ namespace Homework6
         {
             //task1
             double a, b;
-            //try
-            //{
-            //    Console.WriteLine("Enter two numbers");
-            //    a = Double.Parse(Console.ReadLine());
-            //    b = Double.Parse(Console.ReadLine());
-            //    Console.WriteLine("{0} / {1} = {2}", a, b, DoubleResult(a, b));
-            //}
-            //catch (FormatException)
-            //{
-            //    Console.WriteLine("Invalid double number");
-            //}
-            //catch (DivideByZeroException)
-            //{
-            //    Console.WriteLine("Dividing by zero is not allowed");
-            //}
+            try
+            {
+                Console.WriteLine("Enter two numbers");
+                a = Double.Parse(Console.ReadLine());
+                b = Double.Parse(Console.ReadLine());
+                Console.WriteLine("{0} / {1} = {2}", a, b, DoubleResult(a, b));
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("Invalid double number");
+            }
+            catch (DivideByZeroException)
+            {
+                Console.WriteLine("Dividing by zero is not allowed");
+            }
 
-            //task2
+            task2
             try
             {
                 using (StreamReader reader = new StreamReader("data.txt"))
@@ -62,6 +62,30 @@ namespace Homework6
             {
                 Console.WriteLine("The file could not be read:");
                 Console.WriteLine(e.Message);
+            }
+
+            //task3
+            DirectoryInfo info = new DirectoryInfo(@"D:\ArchiCAD\");
+            FileInfo[] file = info.GetFiles();
+            using (StreamWriter writer = new StreamWriter("DirectoryD.txt"))
+            {
+                foreach (FileInfo fs in file)
+                {
+                    writer.Write(String.Format("Name {0}, Size{1}, Type {2}", fs.Name, fs.Length, Path.GetExtension(fs.FullName)));
+                    writer.WriteLine();
+                }
+            }
+
+            //task4
+            DirectoryInfo infoD = new DirectoryInfo(@"D:\SS\TAQC\C#\");
+            FileInfo[] fileD = infoD.GetFiles("*.txt");
+
+            foreach (FileInfo dri in fileD)
+            {
+                using (StreamReader reader = new StreamReader(dri.FullName))
+                {
+                    Console.WriteLine(reader.ReadToEnd());
+                }
             }
 
             Console.ReadKey();
