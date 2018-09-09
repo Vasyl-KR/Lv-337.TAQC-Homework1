@@ -44,7 +44,7 @@ namespace Homework6
                 Console.WriteLine("Dividing by zero is not allowed");
             }
 
-            task2
+            //task2
             try
             {
                 using (StreamReader reader = new StreamReader("data.txt"))
