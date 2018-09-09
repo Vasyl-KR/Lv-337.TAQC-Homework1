@@ -19,7 +19,50 @@ namespace UnitTestCalc
 
             //Assert
             Assert.AreEqual(expected, result);
-
         }
+
+        [TestMethod]
+        public void MultiplyTest()
+        {
+            //arrange
+            double expected = 8;
+
+            //act
+            Calculator calc = new Calculator();
+            double actual = calc.Multiply(2, 4);
+
+            //assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void SubtractTest()
+        {
+            //arrange
+            double expected = -2;
+
+            //act
+            Calculator calc = new Calculator();
+            double actual = calc.Subtract(2, 4);
+
+            //assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void DivisionTest()
+        {
+            //arrange
+            double expected = 0.5;
+
+            //act
+            Calculator calc = new Calculator();
+            double actual = calc.Division(2, 4);
+
+            //assert
+            Assert.AreEqual(expected, actual);
+        }
+
     }
 }
+

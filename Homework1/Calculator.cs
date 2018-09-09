@@ -27,7 +27,7 @@ namespace Test
 
         public int Subtract(int num1, int num2)
         {
-            return num2 - num1;
+            return num1 - num2;
 
         }
 
