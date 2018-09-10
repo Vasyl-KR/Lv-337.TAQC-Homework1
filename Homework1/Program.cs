@@ -59,11 +59,9 @@ namespace Homework6
             {
                 foreach (KeyValuePair<string, string> kvp in phoneBook)
                 {
-                    string temp = "80";
-                    if (kvp.Value.IndexOf('8') == temp.IndexOf('8') && kvp.Value.IndexOf('0') == temp.IndexOf('0'))
+                    if (kvp.Value.StartsWith("80"))
                     {
-                        sw.Write("{0} {1}", kvp.Key, "+3" + kvp.Value);
-                        sw.WriteLine();
+                        sw.WriteLine("{0} {1}", kvp.Key, "+3" + kvp.Value);
                     }
                 }
             }
@@ -72,24 +70,25 @@ namespace Homework6
             int[] numbers = new int[10];
             int start = 1;
             int end = 100;
+            int i = 0;
             Console.WriteLine("Enter 10 numbers in range from 1 to 100");
-            for (int i = 0; i < 10; i++)
+
+            while (i < 10)
             {
                 int temp = ReadNumber(start, end);
                 if (temp != -1)
                 {
                     numbers[i] = temp;
                     start = temp;
+                    i++;
                 }
-                else
-                    i--;
             }
             Console.WriteLine("\nNumbers");
             int count = 0;
-            foreach (int i in numbers)
+            foreach (int n in numbers)
             {
                 count += 1;
-                Console.WriteLine("№{0} - {1}", count, i);
+                Console.WriteLine("№{0} - {1}", count, n);
             }
 
             Console.ReadKey();
