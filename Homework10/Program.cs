@@ -9,38 +9,46 @@ using System.Xml.Serialization;
 using System.Runtime.Serialization.Json;
 
 
-namespace Homework10
+namespace Xml
 {
+    
     class Program
     {
+        private static Order CreateOrder()
+        {
+            Product p1 = new Product { ID = 1, Description = "p2", Price = 9 };
+            Product p2 = new Product { ID = 2, Description = "p3", Price = 6 };
+            Order order = new VIPOrder
+            {
+                ID = 4,
+                Description = "Order for John Doe. Use the nice giftwrap",
+                OrderLines = new List<OrderLine>{
+                                new OrderLine { ID = 5, Amount = 1, Product = p1},
+                                new OrderLine { ID = 6 ,Amount = 10, Product = p2},}
+            };
+            return order;
+        }
         static void Main(string[] args)
         {
-            List<int> marks = new List<int>();
-            Student stud = new Student("Ivan", marks);
-            Parent par = new Parent();
-            AccountingDepartment dep = new AccountingDepartment();
-            stud.MarkChange += par.OnMarkChange;
-            stud.MarkChange += dep.ScholarshipPayment;
-            stud.AddMark(4);
-            stud.AddMark(3);
-            stud.AddMark(2);
-            stud.AddMark(5);
 
-            BinaryFormatter bSer = new BinaryFormatter();
-            using (FileStream fs = new FileStream("Binary.txt", FileMode.Create))
-            {
-                bSer.Serialize(fs, stud);
+            XmlSerializer serializer = new XmlSerializer(typeof(Order), new Type[] { typeof(VIPOrder) });
+            string xml;
+            using (StringWriter stringWriter = new StringWriter()) 
+            { 
+                 Order order = CreateOrder();
+                serializer.Serialize(stringWriter, order); 
+                xml = stringWriter.ToString();
             }
-            XmlSerializer xmlSer = new XmlSerializer(typeof(Student));
-            using (FileStream fs = new FileStream("XML.txt", FileMode.Create))
+            using (StreamWriter sw = new StreamWriter("xml.txt"))
             {
-                xmlSer.Serialize(fs, stud);
+                sw.Write(xml);
             }
-            DataContractJsonSerializer jsonSer = new DataContractJsonSerializer(typeof(Student));
-            using (FileStream fs = new FileStream("Json.json", FileMode.Create))
+            using (StringReader stringReader = new StringReader(xml))
             {
-                jsonSer.WriteObject(fs, stud);
+                Order o = (Order)serializer.Deserialize(stringReader);
+                    // Use the order
             }
+
 
             Console.ReadKey();
         }
