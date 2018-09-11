@@ -43,9 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Bird.cs" />
-    <Compile Include="IFlyable.cs" />
-    <Compile Include="Plane.cs" />
+    <Compile Include="Triangle.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
