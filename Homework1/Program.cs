@@ -4,70 +4,61 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-/*Create struct Point:
-    - fields x and y, 
-    - method Distance() to calculate distance between points
-    - method ToString(), which return the Point in format "(x,y)"
-   Create class Triangle:
-    - fields vertex1, vertex2, vertex3 of type Point
-    - constructors
-    - methods Perimeter(), Square(), Print()
-  In the Main() create list of 3 triangles and write into console the information about these shapes.
-  *Print the triangle with vertex which is the closest to origin (0,0)
+/*Task 1
+1. Створити делегат, який отримує і повертає дійсне число.
+2. Створити метод Tabulation, який отримує цей делегат та два числа a, b, n  і видруковує значення делегату в точках: a+k*(b-a)/n, k=0,1,2,…n 
+3. Викликати метод Tabulation для табуляції функції sin(x), 2x^2+3x*cos(x^3);  
+
+Task 2
+Створити делегат void MyDel(int m) 
+Створити клас Student, з полями name та marks (типу list<int>), подією MarkChange типу MyDel та методом AddMark (додає нову оцінку до marks, перевіряє чи хтось підписався на подію і викликає її з новою оцінкою)
+Створити клас Parent  з методом OnMarkChange (який отримує int оцінку і виводить її на консоль)
+В Main Створити студента, батька, підписати батьківський метод OnMarkChange на подію студента MarkChange. Викликати кілька разів метод AddMark для студента 
+Створити клас Бухгалтерія, метод ВиплатаСтипендії, який друкує чи буде в студента стипендія чи ні, залежно від свого параметра. Підписати цей метод на подію студента MarkChange
+
 */
 
-namespace Homework9
+namespace Homework10
 {
     class Program
     {
+        public delegate double Tab(double n);
+
+        public static double ReturnPoint(double x)
+        {
+            return x;
+        }
+
+        public static double ReturnSin(double x)
+        {
+            return Math.Sin(x);
+        }
+        public static double ReturnCos(double x)
+        {
+            return 2 * x * x + 3 * x * Math.Cos(x * x * x);
+        }
+
+        public static void Tabulation(Tab del1, int a, int b, int n)
+        {
+            for (int k = 0; k < n; k++)
+            {
+                Console.Write("{0:G4}  ", del1(a + k * (b - a) / n));
+            }
+            Console.WriteLine();
+        }
+
         static void Main(string[] args)
         {
-            Point[] points = new Point[9];
-            Point origin = new Point(0, 0);
-            int j = 0;
-            for (int t = 0; t < 3; t++)
-            {
-                Console.WriteLine("Enter points of {0} triangle", t + 1);
-                for (int i = 0; i < 3; i++)
-                {
-                    Console.WriteLine("Enter x and y of {0} point", i + 1);
-                    points[i + j] = new Point(Int32.Parse(Console.ReadLine()), Int32.Parse(Console.ReadLine()));
-
-                }
-                j = j + 3;
-            }
-
-
-            List<Triangle> triangles = new List<Triangle>();
-            triangles.Add(new Triangle(points[0], points[1], points[2]));
-            triangles.Add(new Triangle(points[3], points[4], points[5]));
-            triangles.Add(new Triangle(points[6], points[7], points[8]));
-            foreach (Triangle t in triangles)
-            {
-
-                Console.WriteLine("Perimeter - {0:F3}, Square - {1:F3}", t.Perimeter(), t.Square());
-                t.Print();
-            }
-            double shortest = Int32.MaxValue;
-            int count = 0, minCount = 0;
-            j = 0;
-            foreach (Triangle t in triangles)
-            {
-                double[] mins = new double[3];
-                for (int i = 0; i < 3; i++)
-                {
-                    mins[i] = origin.Distance(points[i + j], origin);
-                }
-                j = j + 3;
-                count++;
-                if (shortest > mins.Min())
-                {
-                    shortest = mins.Min();
-                    minCount = count;
-                }
-
-            }
-            Console.WriteLine("Triangle №{0} is the closest to origin", minCount);
+            int a = 0, b = 5, n = 5;
+            Console.WriteLine("Points");
+            Tab del1 = ReturnPoint;
+            Tabulation(del1, a, b, n);
+            Console.WriteLine("sin(x)");
+            del1 = ReturnSin;
+            Tabulation(del1, a, b, n);
+            Console.WriteLine("2x^2+3x*cos(x^3)");
+            del1 = ReturnCos;
+            Tabulation(del1, a, b, n);
             Console.ReadKey();
         }
     }
