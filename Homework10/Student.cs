@@ -3,14 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Runtime.Serialization;
+
 
 namespace Homework10
 {
+    [Serializable]
+    [DataContract]
     public class Student
     {
         public delegate void MyDel(int m);
 
+        [DataMember]
         private string name;
+        [DataMember]
         private List<int> marks;
 
         public Student() { }
