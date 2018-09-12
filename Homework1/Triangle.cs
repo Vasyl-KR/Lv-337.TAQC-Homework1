@@ -10,9 +10,9 @@ namespace Homework9
     {
         public int x, y;
         public Point(int X, int Y) { x = X; y = Y; }
-        public double Distance(Point p1, Point p2)
+        public double Distance(Point p1)
         {
-            return Math.Sqrt(Math.Pow(p2.x - p1.x, 2) + Math.Pow(p2.y - p1.y, 2));
+            return Math.Sqrt(Math.Pow(p1.x - this.x, 2) + Math.Pow(p1.y - this.y, 2));
         }
         public override string ToString()
         {
@@ -27,11 +27,11 @@ namespace Homework9
 
         public double Perimeter()
         {
-            return vertex1.Distance(vertex1, vertex2) + vertex1.Distance(vertex1, vertex3) + vertex1.Distance(vertex2, vertex3);
+            return vertex1.Distance(vertex2) + vertex1.Distance(vertex3) + vertex2.Distance(vertex3);
         }
         public double Square()
         {
-            return Math.Sqrt(0.5 * this.Perimeter() * (0.5 * this.Perimeter() - vertex1.Distance(vertex1, vertex2)) * (0.5 * this.Perimeter() - vertex1.Distance(vertex1, vertex3)) * (0.5 * this.Perimeter() - vertex1.Distance(vertex2, vertex3)));
+            return Math.Sqrt(0.5 * this.Perimeter() * (0.5 * this.Perimeter() - vertex1.Distance(vertex2)) * (0.5 * this.Perimeter() - vertex1.Distance(vertex3)) * (0.5 * this.Perimeter() - vertex2.Distance(vertex3)));
         }
         public void Print()
         {

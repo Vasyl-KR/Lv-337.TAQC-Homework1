@@ -56,7 +56,7 @@ namespace Homework9
                 double[] mins = new double[3];
                 for (int i = 0; i < 3; i++)
                 {
-                    mins[i] = origin.Distance(points[i + j], origin);
+                    mins[i] = origin.Distance(points[i + j]);
                 }
                 j = j + 3;
                 count++;
