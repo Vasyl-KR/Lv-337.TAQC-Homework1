@@ -106,6 +106,7 @@ namespace FinalTask
             return "Fruit name - " + name + ", color - " + color;
         }
 
+        // Compare method
         public int CompareTo(Fruit other)
         {
             return name.CompareTo(other.name);

@@ -27,7 +27,6 @@ namespace FinalTask
             YellowSearch(fruits);
             fruits.Sort();
 
-  
             using (StreamWriter sw = new StreamWriter(@"..\..\Fruits.txt"))
             {
                 foreach (Fruit fruit in fruits)
@@ -36,8 +35,8 @@ namespace FinalTask
                 }
             }
 
-            //try
-            //{
+            try
+            {
                 //Xml serilization
                 XmlSerializer xmlFormatter = new XmlSerializer(typeof(List<Fruit>));
 
@@ -57,12 +56,12 @@ namespace FinalTask
                         Console.WriteLine(fruit);
                     }
                 }
-            //}
-            //catch(InvalidOperationException e)
-            //{
-            //    Console.WriteLine(e.Message);
-            //}
-            
+            }
+            catch (InvalidOperationException e)
+            {
+                Console.WriteLine(e.Message);
+            }
+
             Console.ReadKey();
         }
 
