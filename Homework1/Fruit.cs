@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
+using System.IO;
 
 /*1) Утворити клас Фрукт, який містить:
 - поля назва та колір, 
@@ -51,10 +52,10 @@ namespace FinalTask
             try
             {
                 Console.WriteLine("Enter name for fruit");
-                name = Console.ReadLine();
+                Name = Console.ReadLine();
 
                 Console.WriteLine("Enter color");
-                color = Console.ReadLine();
+                Color = Console.ReadLine();
             }
             catch (FormatException)
             {
@@ -69,6 +70,13 @@ namespace FinalTask
                 Console.WriteLine(e.Message);
             }
         }
+        //public virtual void Input(string path)
+        //{
+        //    using (StreamReader sr = new StreamReader("InpudData.txt")
+        //    {
+
+        //    }
+        //}
 
         //Виведення даних
         public virtual void Print()

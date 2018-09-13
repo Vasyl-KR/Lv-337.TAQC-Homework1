@@ -25,7 +25,7 @@ namespace FinalTask
             this.vitaminC = vitaminC;
         }
 
-        public int Vitamin_C
+        public int VitaminC
         {
             get { return vitaminC; }
             set { vitaminC = value; }
@@ -42,7 +42,7 @@ namespace FinalTask
                 Color = Console.ReadLine();
 
                 Console.WriteLine("Enter content of vitamin C (in grams)");
-                vitaminC = Int32.Parse(Console.ReadLine());
+                VitaminC = Int32.Parse(Console.ReadLine());
             }
             catch (FormatException)
             {
