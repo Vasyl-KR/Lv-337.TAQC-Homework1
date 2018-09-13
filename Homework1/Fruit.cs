@@ -70,13 +70,29 @@ namespace FinalTask
                 Console.WriteLine(e.Message);
             }
         }
-        //public virtual void Input(string path)
-        //{
-        //    using (StreamReader sr = new StreamReader("InpudData.txt")
-        //    {
-
-        //    }
-        //}
+        //Input data from file
+        public virtual void Input(string line)
+        {
+            try
+            {
+                string[] lines = line.Split(' ');
+                Name = lines[0];
+                Color = lines[1];
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("Invalid format");
+            }
+            catch (ArgumentNullException)
+            {
+                Console.WriteLine("Value cannot be null");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+        }
+       
 
         //Output Data from console
         public virtual void Print()

@@ -31,6 +31,7 @@ namespace FinalTask
             set { vitaminC = value; }
         }
 
+        //Input data from console
         public override void Input()
         {
             try
@@ -43,6 +44,29 @@ namespace FinalTask
 
                 Console.WriteLine("Enter content of vitamin C (in grams)");
                 VitaminC = Int32.Parse(Console.ReadLine());
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("Invalid format");
+            }
+            catch (ArgumentNullException)
+            {
+                Console.WriteLine("Value cannot be null");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+        }
+        //Input data from file
+        public override void Input(string line)
+        {
+            try
+            {
+                string[] lines = line.Split(' ');
+                Name = lines[0];
+                Color = lines[1];
+                VitaminC = Int32.Parse(lines[2]);
             }
             catch (FormatException)
             {

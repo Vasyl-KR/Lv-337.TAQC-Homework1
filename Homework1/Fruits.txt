@@ -1,0 +1,5 @@
+Fruit name - Apple, color - green
+Fruit name - Grape, color - purple
+Fruit name - Lemon, color - yellow, content of vitamin C - 10g
+Fruit name - Lime, color - green, content of vitamin C - 30g
+Fruit name - Orange, color - orange, content of vitamin C - 20g
