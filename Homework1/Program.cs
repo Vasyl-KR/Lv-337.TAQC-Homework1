@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using System.Xml;
 using System.Xml.Serialization;
 
 /*3) Утворити List фруктів і додати до нього 5 різних фруктів і цитрусів.
@@ -19,10 +20,55 @@ namespace FinalTask
     {
         static void Main(string[] args)
         {
-            List<Fruit> fruits = new List<Fruit>();
+            List<Fruit> fruits = FruitsCreateConsole(2);
 
-            //Створення списку фруктів
-            for (int i = 0; i < 2; i++)
+            YellowSearch(fruits);
+            fruits.Sort();
+
+            using (StreamWriter sw = new StreamWriter("fruits.txt"))
+            {
+                foreach (Fruit fruit in fruits)
+                {
+                    sw.WriteLine(fruit);
+                }
+            }
+
+            try
+            {
+                XmlSerializer xmlFormatter = new XmlSerializer(typeof(List<Fruit>));
+
+                using (FileStream fs = new FileStream("fruits.xml", FileMode.OpenOrCreate))
+                {
+                    xmlFormatter.Serialize(fs, fruits);
+                }
+
+                //Xml deserilization
+                using (FileStream fs = new FileStream("fruits.xml", FileMode.OpenOrCreate))
+                {
+                    List<Fruit> newFruits = xmlFormatter.Deserialize(fs) as List<Fruit>;
+
+                    foreach (Fruit fruit in newFruits)
+                    {
+                        Console.WriteLine(fruit);
+                    }
+                }
+            }
+            catch(InvalidOperationException e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            //Xml serilization
+            
+
+            Console.ReadKey();
+        }
+
+
+
+        public static List<Fruit> FruitsCreateConsole (int amount)
+        {
+            List<Fruit> fruits = new List<Fruit>();
+            for (int i = 0; i < amount; i++)
             {
                 Console.WriteLine("Enter 'f' for fruit input, anything else for citrus input");
                 string check = Console.ReadLine();
@@ -40,8 +86,11 @@ namespace FinalTask
                     fruits.Add(citrus);
                 }
             }
+            return fruits;
+        }
 
-            //Пошук фрукту із жовтим кольором 
+        public static void YellowSearch(List<Fruit> fruits)
+        {
             foreach (Fruit fruit in fruits)
             {
                 if (fruit.Color.ToLower() == "yellow")
@@ -49,37 +98,6 @@ namespace FinalTask
                     fruit.Print();
                 }
             }
-
-            fruits.Sort();
-
-            using (StreamWriter sw = new StreamWriter("fruits.txt"))
-            {
-                foreach (Fruit fruit in fruits)
-                {
-                    sw.WriteLine(fruit);
-                }
-            }
-
-            //Серіалізація
-            XmlSerializer formatterC = new XmlSerializer(typeof(List<Fruit>));
-
-            using (FileStream fs = new FileStream("fruits.xml", FileMode.OpenOrCreate))
-            {
-                formatterC.Serialize(fs, fruits);
-            }
-
-            //Десеріалізація
-            using (FileStream fs = new FileStream("fruits.xml", FileMode.OpenOrCreate))
-            {
-                List<Fruit> newFruits = formatterC.Deserialize(fs) as List<Fruit>;
-
-                foreach (Fruit fruit in newFruits)
-                {
-                    Console.WriteLine(fruit);
-                }
-            }
-
-            Console.ReadKey();
         }
     }
 }

@@ -17,8 +17,8 @@ using System.IO;
 namespace FinalTask
 {
     [Serializable]
-    [XmlInclude(typeof(Citrus))]
-    [XmlType("fruits")]
+    [XmlInclude(typeof(Citrus))] // serilization of inherited class
+    [XmlType("fruits")] // one type for deserilization
     public class Fruit : IComparable<Fruit>
     {
 
@@ -46,7 +46,7 @@ namespace FinalTask
             set { color = value; }
         }
 
-        //Ведення даних
+        //Input data from console
         public virtual void Input()
         {
             try
@@ -78,7 +78,7 @@ namespace FinalTask
         //    }
         //}
 
-        //Виведення даних
+        //Output Data from console
         public virtual void Print()
         {
             Console.WriteLine(this);
