@@ -27,6 +27,7 @@ namespace FinalTask
             YellowSearch(fruits);
             fruits.Sort();
 
+            //Output to file
             using (StreamWriter sw = new StreamWriter(@"..\..\Fruits.txt"))
             {
                 foreach (Fruit fruit in fruits)
@@ -45,9 +46,9 @@ namespace FinalTask
                     xmlFormatter.Serialize(fs, fruits);
                 }
 
-            Console.WriteLine("Deserilisation");
-            //Xml deserilization
-            using (FileStream fs = new FileStream(@"..\..\fruits.xml", FileMode.OpenOrCreate))
+                Console.WriteLine("Deserilisation");
+                //Xml deserilization
+                using (FileStream fs = new FileStream(@"..\..\fruits.xml", FileMode.OpenOrCreate))
                 {
                     List<Fruit> newFruits = xmlFormatter.Deserialize(fs) as List<Fruit>;
 
@@ -65,7 +66,7 @@ namespace FinalTask
             Console.ReadKey();
         }
 
-
+        //Create a list from the console
         public static List<Fruit> FruitsCreateConsole (int amount)
         {
             List<Fruit> fruits = new List<Fruit>();
@@ -90,15 +91,16 @@ namespace FinalTask
             return fruits;
         }
 
+        //Create a list from the file
         public static List<Fruit> FruitsCreateFromFile()
         {
             List<Fruit> fruits = new List<Fruit>();
             using (StreamReader sr = new StreamReader(@"..\..\InputData.txt"))
             {
                 string line;
-                while ((line = sr.ReadLine()) != null)
+                while ((line = sr.ReadLine()) != null) // until it reaches the end of the file
                 {
-                    if (line.Any(c => char.IsDigit(c)))
+                    if (line.Any(c => char.IsDigit(c))) //check for number
                     {
                         Citrus tempFruit = new Citrus();
                         tempFruit.Input(line);
@@ -114,7 +116,7 @@ namespace FinalTask
             }
             return fruits;
         }
-
+        //Yellow fruit search
         public static void YellowSearch(List<Fruit> fruits)
         {
             foreach (Fruit fruit in fruits)
