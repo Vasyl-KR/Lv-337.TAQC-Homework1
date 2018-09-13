@@ -43,11 +43,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Square.cs" />
-    <Compile Include="Shape.cs" />
+    <Compile Include="Fruit.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Circle.cs" />
+    <Compile Include="Citrus.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
