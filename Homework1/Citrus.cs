@@ -20,7 +20,7 @@ namespace FinalTask
 
         public Citrus() { }
 
-        public Citrus(string name, string color, int vitaminC) : base(name, color)
+        public Citrus(string name, string color, double vitaminC) : base(name, color)
         {
             this.vitaminC = vitaminC;
         }
@@ -43,7 +43,7 @@ namespace FinalTask
                 Color = Console.ReadLine();
 
                 Console.WriteLine("Enter content of vitamin C (in milligrams)");
-                VitaminC = Int32.Parse(Console.ReadLine());
+                VitaminC = Double.Parse(Console.ReadLine());
             }
             catch (FormatException)
             {
@@ -66,7 +66,7 @@ namespace FinalTask
                 string[] lines = line.Split(' ');
                 Name = lines[0];
                 Color = lines[1];
-                VitaminC = Int32.Parse(lines[2]);
+                VitaminC = Double.Parse(lines[2]);
             }
             catch (FormatException)
             {
