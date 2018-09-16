@@ -16,7 +16,7 @@ namespace FinalTask
     public class Citrus : Fruit
     {
 
-        private int vitaminC;
+        private double vitaminC;
 
         public Citrus() { }
 
@@ -25,7 +25,7 @@ namespace FinalTask
             this.vitaminC = vitaminC;
         }
 
-        public int VitaminC
+        public double VitaminC
         {
             get { return vitaminC; }
             set { vitaminC = value; }
@@ -42,7 +42,7 @@ namespace FinalTask
                 Console.WriteLine("Enter color");
                 Color = Console.ReadLine();
 
-                Console.WriteLine("Enter content of vitamin C (in grams)");
+                Console.WriteLine("Enter content of vitamin C (in milligrams)");
                 VitaminC = Int32.Parse(Console.ReadLine());
             }
             catch (FormatException)
@@ -88,7 +88,7 @@ namespace FinalTask
         }
         public override string ToString()
         {
-            return "Fruit name - " + Name + ", color - " + Color + ", content of vitamin C - " + vitaminC + "g";
+            return "Fruit name - " + Name + ", color - " + Color + ", content of vitamin C - " + vitaminC + "mg";
         }
     }
 }
