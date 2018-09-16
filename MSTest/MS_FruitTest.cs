@@ -1,14 +1,14 @@
 ﻿using System;
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using FinalTask;
 using System.Collections.Generic;
 
-namespace NUnitTest
+namespace MSTest
 {
-    [TestFixture]
-    public class FruitTest
+    [TestClass]
+    public class MS_FruitTest
     {
-        [Test]
+        [TestMethod]
         public void InputNameTest()
         {
             //Arrange
@@ -24,7 +24,7 @@ namespace NUnitTest
             Assert.AreEqual(expected.Color, actual.Color, "Fruits color not equal");
         }
 
-        [Test]
+        [TestMethod]
         public void InputColorTest()
         {
             //Arrange
@@ -39,7 +39,7 @@ namespace NUnitTest
             Assert.AreEqual(expected.Color, actual.Color, "Fruits color not equal");
         }
 
-        [Test]
+        [TestMethod]
         public void ToStringTest()
         {
             //Arrange
@@ -54,7 +54,7 @@ namespace NUnitTest
             Assert.AreEqual(expected, actual, "Invalid method ToString");
         }
 
-        [Test]
+        [TestMethod]
         public void SortTest()
         {
             //Arrange
@@ -74,5 +74,6 @@ namespace NUnitTest
             //Assert
             Assert.AreEqual(expected[0].Name, actual[0].Name, "Incorrect sorting");
         }
+
     }
 }
